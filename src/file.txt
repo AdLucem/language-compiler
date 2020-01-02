@@ -1,0 +1,11 @@
+{ 
+     int draco
+     char astoria
+     int malfoy
+     draco = 10
+     astoria = "10"
+     malfoy = (5 + 5)
+}
+
+
+

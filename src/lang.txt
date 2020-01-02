@@ -1,0 +1,25 @@
+Goal:     LBRACE Block RBRACE         /* a program can consist of single */
+    |     Goal LBRACE Block RBRACE    /* or multiple blocks of code      */
+    ;                                /* each surrounded by braces       */
+Block:    Line        /* a block of code can be a single line or */
+     |     Block Line  /* multiple lines, sequentially */
+     ;
+Line:    TypeDecl NAME                   /* a declaration */
+    |    NAME ASSIGNMENT Expr        /* an assignment */
+    ;
+
+Expr:    Constant                              /* a constant, or */
+    |    LBRACKET OPERATOR Expr RBRACKET       /* an unary application */
+    |    LBRACKET Expr OPERATOR Expr RBRACKET  /* or a binary appl. */
+
+/* --- Your leaf nodes for the AST --- */
+
+/* constants */
+Constant:    STRING
+        |    NUMBER
+        ;
+/* introducing the concept of type arguments */
+TypeDecl : TYPE    /* no argument type */
+         | TYPE Constant
+         | TYPE Constant Constant
+         ;
